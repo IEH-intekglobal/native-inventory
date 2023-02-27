@@ -1,12 +1,21 @@
 import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, Text, View } from "react-native";
+
+import DashboardScreen from "./src/screens/Dashboard";
+import ItemsScreen from "./src/screens/Items";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Leica</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Dashboard" component={DashboardScreen} />
+        <Tab.Screen name="Items" component={ItemsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
