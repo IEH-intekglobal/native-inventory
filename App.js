@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+import { Colors } from "./src/constants/colors";
 import DashboardScreen from "./src/screens/Dashboard";
 import ItemsScreen from "./src/screens/Items";
 import SearchScreen from "./src/screens/Search";
@@ -16,9 +17,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Items"
+        initialRouteName="Dashboard"
         screenOptions={({ route }) => ({
-          tabBarActiveTintColor: "#ec1d2f",
+          tabBarActiveTintColor: Colors.primary,
         })}
       >
         <Tab.Screen
