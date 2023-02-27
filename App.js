@@ -12,8 +12,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Dashboard" component={DashboardScreen} />
         <Tab.Screen name="Items" component={ItemsScreen} />
+        <Tab.Screen name="Dashboard" component={DashboardScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
