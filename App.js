@@ -17,7 +17,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Dashboard"
+        initialRouteName="Menu"
         screenOptions={({ route }) => ({
           tabBarActiveTintColor: Colors.primary,
         })}
@@ -43,7 +43,7 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Settings"
+          name="Menu"
           component={SettingsScreen}
           options={{
             tabBarLabel: "",
