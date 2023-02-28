@@ -38,7 +38,7 @@ export default function Dashboard() {
           </DashboardCard>
         </View>
         <Text style={styles.newSectionText}>Recent Items</Text>
-        <View>
+        <View style={styles.recentItems}>
           <FlatList
             data={recentItems}
             keyExtractor={(item) => item.id}
@@ -53,7 +53,7 @@ export default function Dashboard() {
 
 const styles = StyleSheet.create({
   screenContainer: {
-    marginTop: 10,
+    marginTop: 0,
     flex: 1,
   },
   smallCardsContainer: {
@@ -62,9 +62,15 @@ const styles = StyleSheet.create({
 
   cardText: {
     margin: 10,
+    color: "gray",
   },
   newSectionText: {
     margin: 12,
     fontSize: 18,
+    color: "gray",
+  },
+  recentItems: {
+    backgroundColor: "white",
+    paddingVertical: 10,
   },
 });

@@ -4,7 +4,7 @@ import { items } from "../db/dummy-items";
 function ItemInfo({ name, info }) {
   return (
     <View>
-      <Text>{name}</Text>
+      <Text style={styles.name}>{name}</Text>
       <Text style={styles.info}>{info}</Text>
     </View>
   );
@@ -40,6 +40,9 @@ const styles = StyleSheet.create({
 
     height: 70,
     alignItems: "center",
+  },
+  name: {
+    color: "gray",
   },
   info: {
     fontWeight: "bold",

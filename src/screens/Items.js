@@ -23,9 +23,9 @@ const styles = StyleSheet.create({
     paddingBottom: 70,
   },
   header: {
-    borderBottomColor: "gray",
+    borderBottomColor: "lavender",
     borderBottomWidth: 1,
-    borderTopColor: "gray",
+    borderTopColor: "lavender",
     borderTopWidth: 1,
   },
 });

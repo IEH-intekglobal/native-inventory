@@ -11,14 +11,16 @@ export function Item({ item, width }) {
   }
   return (
     <View style={[styles.componentContainer, slimItem && styles.slimContainer]}>
-      <View style={slimItem ? styles.smallItemContainer : styles.itemContainer}>
+      <View style={slimItem ? styles.slimItemContainer : styles.itemContainer}>
         <Image
           source={{ uri: item.image }}
           style={slimItem ? styles.slimImage : styles.image}
         />
 
         <View style={styles.optionsContainer}>
-          <View style={styles.textContainer}>
+          <View
+            style={slimItem ? styles.slimTextContainer : styles.textContainer}
+          >
             <Text style={styles.name}> {item.name}</Text>
             <Text style={styles.information}>
               {item.quantity} units {!slimItem && `| ${totalPrice}`}
@@ -27,7 +29,7 @@ export function Item({ item, width }) {
           <Pressable
             android_ripple={true}
             onPress={handleShowOptions}
-            style={styles.optionsButton}
+            style={[styles.optionsButton, slimItem && styles.slimOptionsButton]}
           >
             <Ionicons name="ellipsis-vertical" size={20} />
           </Pressable>
@@ -40,13 +42,13 @@ export function Item({ item, width }) {
 const styles = StyleSheet.create({
   componentContainer: {
     flexDirection: "row",
-    borderBottomColor: "gray",
+    borderBottomColor: "lavender",
     borderBottomWidth: 1,
     backgroundColor: "white",
     justifyContent: "space-between",
   },
   slimContainer: {
-    elevation: 8,
+    elevation: 4,
     margin: 10,
     borderRadius: 10,
     padding: 5,
@@ -61,7 +63,9 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     flex: 1,
   },
-  smallItemContainer: {},
+  slimItemContainer: {
+    minHeight: 190,
+  },
   image: {
     width: 90,
     height: 90,
@@ -70,19 +74,27 @@ const styles = StyleSheet.create({
   slimImage: {
     width: 110,
     height: 110,
-    margin: 5,
+    margin: 1,
   },
   textContainer: {
     justifyContent: "center",
   },
+  slimTextContainer: {
+    marginTop: 12,
+  },
+
   name: {
     fontWeight: "bold",
   },
   information: {
     color: "gray",
+    marginLeft: 2,
   },
   optionsButton: {
     marginTop: 15,
     marginRight: 5,
+  },
+  slimOptionsButton: {
+    marginRight: -4,
   },
 });

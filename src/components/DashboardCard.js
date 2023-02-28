@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 10,
     overflow: "hidden",
-    elevation: 10,
+    elevation: 1,
   },
   cardIcon: {
     margin: 10,
