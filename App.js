@@ -17,7 +17,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Menu"
+        initialRouteName="Search"
         screenOptions={({ route }) => ({
           tabBarActiveTintColor: Colors.primary,
         })}
