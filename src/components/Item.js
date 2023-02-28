@@ -1,7 +1,22 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-export function Item({ item, width }) {
+function TextWithHighlight({ text, highlightedText }) {
+  const index = text?.toLowerCase().indexOf(highlightedText.toLowerCase());
+  const firstPart = text?.slice(0, index);
+  const middlePart = text?.slice(index, index + highlightedText.length);
+  const lastPart = text?.slice(index + highlightedText.length);
+
+  return (
+    <Text>
+      {firstPart}
+      <Text style={styles.name}>{middlePart}</Text>
+      {lastPart}
+    </Text>
+  );
+}
+
+export function Item({ item, width, highlightedText }) {
   const totalPrice = `$${item.price * item.quantity}.00`;
 
   const slimItem = width && width < 400;
@@ -21,7 +36,14 @@ export function Item({ item, width }) {
           <View
             style={slimItem ? styles.slimTextContainer : styles.textContainer}
           >
-            <Text style={styles.name}> {item.name}</Text>
+            {highlightedText ? (
+              <TextWithHighlight
+                text={item.name}
+                highlightedText={highlightedText}
+              />
+            ) : (
+              <Text style={styles.name}> {item.name}</Text>
+            )}
             <Text style={styles.information}>
               {item.quantity} units {!slimItem && `| ${totalPrice}`}
             </Text>

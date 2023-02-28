@@ -47,7 +47,7 @@ export default function Search() {
         <FlatList
           data={foundItems}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <Item item={item} />}
+          renderItem={({ item }) => <Item item={item} highlightedText={text} />}
         />
       </View>
     </View>
