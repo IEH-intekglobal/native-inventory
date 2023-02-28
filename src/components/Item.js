@@ -10,29 +10,35 @@ export function Item({ item, width }) {
     console.log(item.name);
   }
   return (
-    <View style={[styles.screenContainer, slimItem && styles.slimContainer]}>
+    <View style={[styles.componentContainer, slimItem && styles.slimContainer]}>
       <View style={slimItem ? styles.smallItemContainer : styles.itemContainer}>
-        <Image source={{ uri: item.image }} style={styles.image} />
-        <View style={styles.textContainer}>
-          <Text style={styles.name}> {item.name}</Text>
-          <Text style={styles.information}>
-            {item.quantity} units {!slimItem && `| ${totalPrice}`}
-          </Text>
+        <Image
+          source={{ uri: item.image }}
+          style={slimItem ? styles.slimImage : styles.image}
+        />
+
+        <View style={styles.optionsContainer}>
+          <View style={styles.textContainer}>
+            <Text style={styles.name}> {item.name}</Text>
+            <Text style={styles.information}>
+              {item.quantity} units {!slimItem && `| ${totalPrice}`}
+            </Text>
+          </View>
+          <Pressable
+            android_ripple={true}
+            onPress={handleShowOptions}
+            style={styles.optionsButton}
+          >
+            <Ionicons name="ellipsis-vertical" size={20} />
+          </Pressable>
         </View>
       </View>
-      <Pressable
-        android_ripple={true}
-        onPress={handleShowOptions}
-        style={styles.optionsButton}
-      >
-        <Ionicons name="ellipsis-vertical" size={20} />
-      </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  screenContainer: {
+  componentContainer: {
     flexDirection: "row",
     borderBottomColor: "gray",
     borderBottomWidth: 1,
@@ -45,14 +51,26 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 5,
   },
+  optionsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    flex: 1,
+  },
   itemContainer: {
     flexDirection: "row",
+    justifyContent: "flex-start",
+    flex: 1,
   },
   smallItemContainer: {},
   image: {
-    width: 100,
-    height: 100,
+    width: 90,
+    height: 90,
     margin: 10,
+  },
+  slimImage: {
+    width: 110,
+    height: 110,
+    margin: 5,
   },
   textContainer: {
     justifyContent: "center",
