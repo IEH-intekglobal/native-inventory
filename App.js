@@ -1,7 +1,7 @@
 //import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { Colors } from "./src/constants/colors";
@@ -27,7 +27,7 @@ export default function App() {
           component={DashboardScreen}
           options={{
             tabBarIcon: ({ focused, color, size }) => {
-              return <Ionicons name="grid" size={size} color={color} />;
+              return <Ionicons name="grid-outline" size={size} color={color} />;
             },
           }}
         />
@@ -36,7 +36,28 @@ export default function App() {
           component={ItemsScreen}
           options={{
             tabBarIcon: ({ focused, color, size }) => {
-              return <Ionicons name="albums" size={size} color={color} />;
+              return (
+                <Ionicons name="albums-outline" size={size} color={color} />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{
+            tabBarLabel: "",
+            tabBarIcon: ({ focused, color, size }) => {
+              return (
+                <Image
+                  source={require("./assets/settingsButton.png")}
+                  style={
+                    !focused
+                      ? styles.settingsButton
+                      : styles.focusedSettingsButton
+                  }
+                />
+              );
             },
           }}
         />
@@ -55,17 +76,12 @@ export default function App() {
           options={{
             tabBarIcon: ({ focused, color, size }) => {
               return (
-                <Ionicons name="notifications" size={size} color={color} />
+                <Ionicons
+                  name="notifications-outline"
+                  size={size}
+                  color={color}
+                />
               );
-            },
-          }}
-        />
-        <Tab.Screen
-          name="Settings"
-          component={SettingsScreen}
-          options={{
-            tabBarIcon: ({ focused, color, size }) => {
-              return <Ionicons name="settings" size={size} color={color} />;
             },
           }}
         />
@@ -80,5 +96,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  focusedSettingsButton: {
+    width: 55,
+    height: 55,
+    marginTop: 5,
+  },
+  settingsButton: {
+    width: 45,
+    height: 45,
+    marginTop: 10,
   },
 });
