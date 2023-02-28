@@ -1,4 +1,4 @@
-import { FlatList, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 
 import { items } from "../db/dummy-items";
 
@@ -8,7 +8,7 @@ import { ItemsHeader } from "../components/ItemsHeader";
 export default function Items() {
   return (
     <View>
-      <ItemsHeader />
+      <ItemsHeader style={styles.header} />
       <FlatList
         data={items}
         keyExtractor={(item) => item.id}
@@ -17,3 +17,12 @@ export default function Items() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    borderBottomColor: "gray",
+    borderBottomWidth: 1,
+    borderTopColor: "gray",
+    borderTopWidth: 1,
+  },
+});

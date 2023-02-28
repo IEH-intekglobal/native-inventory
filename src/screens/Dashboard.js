@@ -1,9 +1,58 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { ItemsHeader } from "../components/ItemsHeader";
+import { DashboardCard } from "../components/DashboardCard";
 
 export default function Dashboard() {
   return (
-    <View>
-      <Text>Dashboard</Text>
+    <View style={styles.screenContainer}>
+      <DashboardCard
+        icon="clipboard"
+        title="Inventory summary"
+        size="fullWidth"
+      >
+        <ItemsHeader />
+      </DashboardCard>
+      <View style={styles.smallCardsContainer}>
+        <DashboardCard icon="trending-down" title="Low stock">
+          <Text style={styles.cardText}>Items that are low inventory</Text>
+        </DashboardCard>
+        <DashboardCard icon="repeat" title="Transactions">
+          <Text style={styles.cardText}>Report of the transactions</Text>
+        </DashboardCard>
+      </View>
+      <View style={styles.smallCardsContainer}>
+        <DashboardCard icon="bar-chart" title="Quantity changes">
+          <Text style={styles.cardText}>
+            Check all the changes in quantity per item
+          </Text>
+        </DashboardCard>
+        <DashboardCard icon="arrow-forward" title="Movements">
+          <Text style={styles.cardText}>
+            All the movements in the inventory
+          </Text>
+        </DashboardCard>
+      </View>
+      <Text style={styles.newSectionText}>Recent Items</Text>
+      <View>
+        <Text>Recent items</Text>
+      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  screenContainer: {
+    marginTop: 10,
+  },
+  smallCardsContainer: {
+    flexDirection: "row",
+  },
+
+  cardText: {
+    margin: 10,
+  },
+  newSectionText: {
+    margin: 12,
+    fontSize: 18,
+  },
+});
