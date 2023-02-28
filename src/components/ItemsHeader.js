@@ -10,7 +10,7 @@ function ItemInfo({ name, info }) {
   );
 }
 
-export function ItemsHeader() {
+export function ItemsHeader({ style }) {
   const numberItems = items.length;
   const totalUnities = items.reduce((accumulate, currentItem) => {
     return currentItem.quantity + accumulate;
@@ -23,7 +23,7 @@ export function ItemsHeader() {
   const totalValueStr = `$${String(totalValue / 1000)}K`;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <ItemInfo name="Folders" info="1" />
       <ItemInfo name="Items" info={numberItems} />
       <ItemInfo name="Total units" info={totalUnities} />
@@ -37,10 +37,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "white",
     justifyContent: "space-around",
-    borderBottomColor: "gray",
-    borderBottomWidth: 1,
-    borderTopColor: "gray",
-    borderTopWidth: 1,
+
     height: 70,
     alignItems: "center",
   },
