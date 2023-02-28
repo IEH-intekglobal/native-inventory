@@ -16,7 +16,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Items"
+        initialRouteName="Dashboard"
         screenOptions={({ route }) => ({
           tabBarActiveTintColor: "#ec1d2f",
         })}

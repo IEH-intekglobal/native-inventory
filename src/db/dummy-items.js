@@ -26,4 +26,31 @@ export const items = [
     image:
       "https://www.leica-microsystems.com/fileadmin/_processed_/e/7/csm_THUNDER-Imager-Tissue_neurons_1800_b47d5d04c4.jpg",
   },
+  {
+    id: "4",
+    name: "dmi1",
+    quantity: 100,
+    location: "secondary warehouse",
+    price: 3000,
+    image:
+      "https://www.leica-microsystems.com/fileadmin/landingpages/Leica_DMi1_16.jpg",
+  },
+  {
+    id: "5",
+    name: "emspira 3",
+    quantity: 1000,
+    location: "main store",
+    price: 7000,
+    image:
+      "https://www.leica-microsystems.com/fileadmin/_migrated/Products/Keyfeatures/emspira-digital-microscope-config1.jpg",
+  },
+  {
+    id: "6",
+    name: "DM750",
+    quantity: 200,
+    location: "main store",
+    price: 1500,
+    image:
+      "https://www.leica-microsystems.com/fileadmin/_migrated/Products/leica-dm750.jpg",
+  },
 ];

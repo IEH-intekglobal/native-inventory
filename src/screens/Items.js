@@ -7,7 +7,7 @@ import { ItemsHeader } from "../components/ItemsHeader";
 
 export default function Items() {
   return (
-    <View>
+    <View style={styles.itemsContainer}>
       <ItemsHeader style={styles.header} />
       <FlatList
         data={items}
@@ -19,6 +19,9 @@ export default function Items() {
 }
 
 const styles = StyleSheet.create({
+  itemsContainer: {
+    paddingBottom: 70,
+  },
   header: {
     borderBottomColor: "gray",
     borderBottomWidth: 1,

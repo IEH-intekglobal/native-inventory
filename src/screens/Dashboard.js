@@ -1,8 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import { ItemsHeader } from "../components/ItemsHeader";
 import { DashboardCard } from "../components/DashboardCard";
+import { Item } from "../components/Item";
+
+import { items } from "../db/dummy-items";
 
 export default function Dashboard() {
+  const recentItems = items.filter((item) => true);
   return (
     <View style={styles.screenContainer}>
       <DashboardCard
@@ -34,7 +38,12 @@ export default function Dashboard() {
       </View>
       <Text style={styles.newSectionText}>Recent Items</Text>
       <View>
-        <Text>Recent items</Text>
+        <FlatList
+          data={recentItems}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <Item item={item} width={120} />}
+          horizontal={true}
+        />
       </View>
     </View>
   );
@@ -43,6 +52,7 @@ export default function Dashboard() {
 const styles = StyleSheet.create({
   screenContainer: {
     marginTop: 10,
+    flex: 1,
   },
   smallCardsContainer: {
     flexDirection: "row",
