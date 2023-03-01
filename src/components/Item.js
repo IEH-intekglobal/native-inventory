@@ -16,7 +16,7 @@ function TextWithHighlight({ text, highlightedText }) {
   );
 }
 
-export function Item({ item, width, highlightedText }) {
+export function Item({ item, width, highlightedText, navigation }) {
   const totalPrice = `$${item.price * item.quantity}.00`;
 
   const slimItem = width && width < 400;
@@ -24,8 +24,15 @@ export function Item({ item, width, highlightedText }) {
   function handleShowOptions() {
     console.log(item.name);
   }
+
+  function handleShowDetails() {
+    console.log(item.name);
+  }
   return (
-    <View style={[styles.componentContainer, slimItem && styles.slimContainer]}>
+    <Pressable
+      style={[styles.componentContainer, slimItem && styles.slimContainer]}
+      onPress={handleShowDetails}
+    >
       <View style={slimItem ? styles.slimItemContainer : styles.itemContainer}>
         <Image
           source={{ uri: item.image }}
@@ -57,7 +64,7 @@ export function Item({ item, width, highlightedText }) {
           </Pressable>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
