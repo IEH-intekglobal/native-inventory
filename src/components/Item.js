@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 10,
     padding: 5,
+    maxWidth: 150,
   },
   optionsContainer: {
     flexDirection: "row",

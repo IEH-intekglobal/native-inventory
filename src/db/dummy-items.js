@@ -18,15 +18,6 @@ export const items = [
       "https://www.leica-microsystems.com/fileadmin/global/products/Light/dm1000/Leica_DM1000_LED_ergonomic-system-microscope_list.jpg",
   },
   {
-    id: "3",
-    name: "Thunder Imager Tissue",
-    quantity: 500,
-    location: "main warehouse",
-    price: 35000,
-    image:
-      "https://www.leica-microsystems.com/fileadmin/_processed_/e/7/csm_THUNDER-Imager-Tissue_neurons_1800_b47d5d04c4.jpg",
-  },
-  {
     id: "4",
     name: "dmi1",
     quantity: 100,
@@ -52,6 +43,15 @@ export const items = [
     price: 1500,
     image:
       "https://www.leica-microsystems.com/fileadmin/_migrated/Products/leica-dm750.jpg",
+  },
+  {
+    id: "3",
+    name: "Thunder Imager Tissue",
+    quantity: 500,
+    location: "main warehouse",
+    price: 35000,
+    image:
+      "https://www.leica-microsystems.com/fileadmin/_processed_/e/7/csm_THUNDER-Imager-Tissue_neurons_1800_b47d5d04c4.jpg",
   },
 ];
 

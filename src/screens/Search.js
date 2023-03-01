@@ -45,9 +45,17 @@ export default function Search() {
       <View style={styles.results}>
         <Text style={styles.foundItemsText}>Found Items</Text>
         <FlatList
+          contentContainerStyle={{
+            //justifyContent: "center",
+            //alignContent: "center",
+            alignItems: "center",
+          }}
           data={foundItems}
+          numColumns={2}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <Item item={item} highlightedText={text} />}
+          renderItem={({ item }) => (
+            <Item item={item} highlightedText={text} width={350} />
+          )}
         />
       </View>
     </View>
@@ -75,7 +83,7 @@ const styles = StyleSheet.create({
   },
   results: {
     height: "100%",
-    paddingBottom: 30,
+    paddingBottom: 125,
   },
   foundItemsText: {
     textAlign: "center",
