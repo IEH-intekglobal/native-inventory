@@ -54,3 +54,24 @@ export const items = [
       "https://www.leica-microsystems.com/fileadmin/_migrated/Products/leica-dm750.jpg",
   },
 ];
+
+export const notifications = [
+  {
+    id: "n1",
+    title: "Low stock",
+    date: new Date(2022, 11, 17, 15, 24),
+    status: "unread",
+  },
+  {
+    id: "n2",
+    title: "Purchase received",
+    date: new Date(2022, 11, 17, 16, 24),
+    status: "read",
+  },
+  {
+    id: "n3",
+    title: "Transportation finished",
+    date: new Date(2022, 11, 16, 11, 3),
+    status: "read",
+  },
+];
