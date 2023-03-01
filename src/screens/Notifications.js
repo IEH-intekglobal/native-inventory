@@ -20,15 +20,17 @@ export default function Notifications() {
           </View>
         </Pressable>
       </View>
-      <View>
+      <View style={styles.notificationsSection}>
         <Text style={styles.notificationsTitle}>Notifications</Text>
-        <FlatList
-          data={notifications}
-          keyExtractor={(not) => not.id}
-          renderItem={({ item: notification }) => (
-            <Notification notification={notification} />
-          )}
-        ></FlatList>
+        <View style={styles.notificationsContainer}>
+          <FlatList
+            data={notifications}
+            keyExtractor={(not) => not.id}
+            renderItem={({ item: notification }) => (
+              <Notification notification={notification} />
+            )}
+          />
+        </View>
       </View>
     </View>
   );
@@ -57,11 +59,16 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
   },
-
+  notificationsSection: {
+    height: "100%",
+  },
   notificationsTitle: {
     color: "gray",
     fontSize: 18,
     margin: 20,
     fontWeight: "bold",
+  },
+  notificationsContainer: {
+    height: 410,
   },
 });

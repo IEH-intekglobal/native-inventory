@@ -74,4 +74,16 @@ export const notifications = [
     date: new Date(2022, 11, 16, 11, 3),
     status: "read",
   },
+  {
+    id: "n4",
+    title: "Low stock",
+    date: new Date(2022, 11, 15, 17, 43),
+    status: "read",
+  },
+  {
+    id: "n5",
+    title: "Stock delayed",
+    date: new Date(2022, 11, 15, 12, 24),
+    status: "read",
+  },
 ];

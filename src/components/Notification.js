@@ -51,6 +51,8 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     alignItems: "center",
+    justifyContent: "center",
+    margin: 10,
   },
   titleText: {
     fontSize: 16,
