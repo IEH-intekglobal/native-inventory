@@ -1,5 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useNavigation } from "@react-navigation/native";
 
 function TextWithHighlight({ text, highlightedText }) {
   const index = text?.toLowerCase().indexOf(highlightedText.toLowerCase());
@@ -16,7 +17,9 @@ function TextWithHighlight({ text, highlightedText }) {
   );
 }
 
-export function Item({ item, width, highlightedText, navigation }) {
+export function Item({ item, width, highlightedText }) {
+  const navigation = useNavigation();
+
   const totalPrice = `$${item.price * item.quantity}.00`;
 
   const slimItem = width && width < 400;
@@ -26,7 +29,7 @@ export function Item({ item, width, highlightedText, navigation }) {
   }
 
   function handleShowDetails() {
-    console.log(item.name);
+    navigation.navigate("ItemDetails", { id: item.id });
   }
   return (
     <Pressable

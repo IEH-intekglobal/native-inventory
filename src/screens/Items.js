@@ -5,7 +5,7 @@ import { items } from "../db/dummy-items";
 import { Item } from "../components/Item";
 import { ItemsHeader } from "../components/ItemsHeader";
 
-export default function Items() {
+export default function Items({ navigation }) {
   return (
     <View style={styles.itemsContainer}>
       <ItemsHeader style={styles.header} />

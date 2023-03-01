@@ -97,3 +97,8 @@ export const notifications = [
       "https://www.leica-microsystems.com/fileadmin/_migrated/Products/leica-dm750.jpg",
   },
 ];
+
+export function getItemById(id) {
+  const item = items.find((it) => it.id === id);
+  return item;
+}

@@ -6,6 +6,7 @@ import { StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { BottomTabsNavigation } from "./src/navigation/BottomTabsNavigation";
+import ItemDetailsScreen from "./src/screens/ItemDetails";
 
 const Stack = createStackNavigator();
 
@@ -18,16 +19,10 @@ export default function App() {
           component={BottomTabsNavigation}
           options={{ headerShown: false }}
         />
+        <Stack.Screen name="ItemDetails" component={ItemDetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: "#fff",
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  // },
-});
+const styles = StyleSheet.create({});

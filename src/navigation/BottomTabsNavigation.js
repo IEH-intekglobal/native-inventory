@@ -13,10 +13,10 @@ import { StyleSheet } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
-export function BottomTabsNavigation() {
+export function BottomTabsNavigation({ navigation }) {
   return (
     <Tab.Navigator
-      initialRouteName="ItemsN"
+      initialRouteName="Items"
       screenOptions={({ route }) => ({
         tabBarActiveTintColor: Colors.primary,
       })}
@@ -33,9 +33,10 @@ export function BottomTabsNavigation() {
       <Tab.Screen
         name="Items"
         component={ItemsScreen}
+        initialParams={{ navigation }}
         options={{
           //headerShown: false,
-          tabBarLabel: "Items",
+          //tabBarLabel: "Items",
           tabBarIcon: ({ focused, color, size }) => {
             return <Ionicons name="albums-outline" size={size} color={color} />;
           },
