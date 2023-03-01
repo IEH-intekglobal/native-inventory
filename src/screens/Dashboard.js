@@ -12,13 +12,13 @@ export default function Dashboard() {
       <ScrollView>
         <DashboardCard
           icon="clipboard"
-          title="Inventory summary"
+          title="Inventory Summary"
           size="fullWidth"
         >
           <ItemsHeader />
         </DashboardCard>
         <View style={styles.smallCardsContainer}>
-          <DashboardCard icon="trending-down" title="Low stock">
+          <DashboardCard icon="trending-down" title="Low Stock">
             <Text style={styles.cardText}>Items that are low inventory</Text>
           </DashboardCard>
           <DashboardCard icon="repeat" title="Transactions">
@@ -26,7 +26,7 @@ export default function Dashboard() {
           </DashboardCard>
         </View>
         <View style={styles.smallCardsContainer}>
-          <DashboardCard icon="bar-chart" title="Quantity changes">
+          <DashboardCard icon="bar-chart" title="Quantity Changes">
             <Text style={styles.cardText}>
               Check all the changes in quantity per item
             </Text>
