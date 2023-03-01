@@ -61,29 +61,39 @@ export const notifications = [
     title: "Low stock",
     date: new Date(2022, 11, 17, 15, 24),
     status: "unread",
+    image:
+      "https://www.leica-microsystems.com/fileadmin/global/products/Light/dm1000/Leica_DM1000_LED_ergonomic-system-microscope_list.jpg",
   },
   {
     id: "n2",
     title: "Purchase received",
     date: new Date(2022, 11, 17, 16, 24),
     status: "read",
+    image:
+      "https://www.leica-microsystems.com/fileadmin/_migrated/Products/leica-dm500-education-micro.jpg",
   },
   {
     id: "n3",
     title: "Transportation finished",
     date: new Date(2022, 11, 16, 11, 3),
     status: "read",
+    image:
+      "https://www.leica-microsystems.com/fileadmin/landingpages/Leica_DMi1_16.jpg",
   },
   {
     id: "n4",
     title: "Low stock",
     date: new Date(2022, 11, 15, 17, 43),
     status: "read",
+    image:
+      "https://www.leica-microsystems.com/fileadmin/_migrated/Products/Keyfeatures/emspira-digital-microscope-config1.jpg",
   },
   {
     id: "n5",
     title: "Stock delayed",
     date: new Date(2022, 11, 15, 12, 24),
     status: "read",
+    image:
+      "https://www.leica-microsystems.com/fileadmin/_migrated/Products/leica-dm750.jpg",
   },
 ];

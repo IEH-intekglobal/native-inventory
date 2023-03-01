@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { Image } from "react-native";
 
 export function Notification({ notification }) {
   const { date, status, title } = notification;
@@ -12,24 +13,29 @@ export function Notification({ notification }) {
         unread && styles.unreadNotificationContainer,
       ]}
     >
-      <View style={styles.imageContainer}>
-        <Ionicons
-          name={unread ? "mail-outline" : "mail-open-outline"}
-          size={37}
-          color={unread ? "black" : "gray"}
-        />
+      <View style={styles.infoContainer}>
+        <View style={styles.iconContainer}>
+          <Ionicons
+            name={unread ? "mail-outline" : "mail-open-outline"}
+            size={37}
+            color={unread ? "black" : "gray"}
+          />
+        </View>
+        <View>
+          <View>
+            <Text style={[styles.titleText, unread && styles.unreadTitleText]}>
+              {title}
+            </Text>
+          </View>
+          <View>
+            <Text style={[styles.date, unread && styles.unreadDate]}>
+              {date.toLocaleString()}
+            </Text>
+          </View>
+        </View>
       </View>
-      <View>
-        <View>
-          <Text style={[styles.titleText, unread && styles.unreadTitleText]}>
-            {title}
-          </Text>
-        </View>
-        <View>
-          <Text style={[styles.date, unread && styles.unreadDate]}>
-            {date.toLocaleString()}
-          </Text>
-        </View>
+      <View style={styles.imageContainer}>
+        <Image source={{ uri: notification.image }} style={styles.image} />
       </View>
     </View>
   );
@@ -44,12 +50,16 @@ const styles = StyleSheet.create({
     opacity: 0.8,
     borderRadius: 12,
     flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  infoContainer: {
+    flexDirection: "row",
   },
   unreadNotificationContainer: {
     elevation: 11,
     opacity: 1,
   },
-  imageContainer: {
+  iconContainer: {
     alignItems: "center",
     justifyContent: "center",
     margin: 10,
@@ -69,5 +79,14 @@ const styles = StyleSheet.create({
   },
   unreadDate: {
     color: "black",
+  },
+  image: {
+    width: 60,
+    height: 60,
+    margin: 10,
+  },
+  imageContainer: {
+    // justifyContent: "flex-end",
+    //backgroundColor: "red",
   },
 });
