@@ -5,6 +5,7 @@ export const items = [
     quantity: 200,
     location: "Main Warehouse",
     price: 1000,
+    date: new Date(2022, 11, 14, 9, 17),
     image:
       "https://www.leica-microsystems.com/fileadmin/_migrated/Products/leica-dm500-education-micro.jpg",
   },
@@ -14,6 +15,7 @@ export const items = [
     quantity: 500,
     location: "Main Store",
     price: 2000,
+    date: new Date(2022, 11, 13, 5, 48),
     image:
       "https://www.leica-microsystems.com/fileadmin/global/products/Light/dm1000/Leica_DM1000_LED_ergonomic-system-microscope_list.jpg",
   },
@@ -23,6 +25,7 @@ export const items = [
     quantity: 100,
     location: "Secondary Warehouse",
     price: 3000,
+    date: new Date(2022, 11, 12, 14, 5),
     image:
       "https://www.leica-microsystems.com/fileadmin/landingpages/Leica_DMi1_16.jpg",
   },
@@ -32,6 +35,7 @@ export const items = [
     quantity: 1000,
     location: "Main Store",
     price: 7000,
+    date: new Date(2022, 11, 11, 16, 24),
     image:
       "https://www.leica-microsystems.com/fileadmin/_migrated/Products/Keyfeatures/emspira-digital-microscope-config1.jpg",
   },
@@ -41,6 +45,7 @@ export const items = [
     quantity: 200,
     location: "Main Store",
     price: 1500,
+    date: new Date(2022, 11, 11, 11, 40),
     image:
       "https://www.leica-microsystems.com/fileadmin/_migrated/Products/leica-dm750.jpg",
   },
@@ -50,6 +55,7 @@ export const items = [
     quantity: 500,
     location: "Main Warehouse",
     price: 35000,
+    date: new Date(2022, 11, 10, 15, 21),
     image:
       "https://www.leica-microsystems.com/fileadmin/_processed_/e/7/csm_THUNDER-Imager-Tissue_neurons_1800_b47d5d04c4.jpg",
   },
