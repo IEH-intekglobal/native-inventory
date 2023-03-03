@@ -1,6 +1,7 @@
 import { app } from "./config";
-import { getFirestore } from "firebase/firestore";
+import { getDoc, getFirestore } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
+import { async } from "@firebase/util";
 
 export const db = getFirestore(app);
 
@@ -36,6 +37,14 @@ export async function getItemById(id) {
 
 export async function getRecentItems() {
   const querySnapshot = await getDocs(collection(db, "items"));
+
+  const foundItems = parseResults(querySnapshot);
+
+  return foundItems;
+}
+
+export async function getNotifications() {
+  const querySnapshot = await getDocs(collection(db, "notifications"));
 
   const foundItems = parseResults(querySnapshot);
 

@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 import { Colors } from "../constants/colors";
 import IconButton from "../components/IconButton";
 import { Item } from "../components/Item";
 
+import { getItems } from "../db/firestore/db";
+
 export default function Search() {
   const [text, setText] = useState("");
   const [foundItems, setFoundItems] = useState([]);
+  const [allItems, setAllItems] = useState([]);
+
+  useEffect(() => {
+    getItems().then((items) => {
+      setAllItems(items);
+      if (!text) setFoundItems(items);
+    });
+  }, []);
 
   function handleSearchOptions() {
     console.log("search options");
@@ -15,7 +25,7 @@ export default function Search() {
   function onChangeText(text) {
     setText(text);
 
-    const newItems = items.filter((item) => {
+    const newItems = allItems.filter((item) => {
       const lowerName = item.name.toLowerCase();
       const lowerText = text.toLowerCase();
 

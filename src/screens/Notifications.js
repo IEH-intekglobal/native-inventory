@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Colors } from "../constants/colors";
 import { Notification } from "../components/Notification";
+import { getNotifications } from "../db/firestore/db";
 
 export default function Notifications() {
   const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    getNotifications().then((nots) => setNotifications(nots));
+  }, []);
   return (
     <View>
       <View style={styles.buttonContainer}>
