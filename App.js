@@ -9,6 +9,16 @@ import ItemDetailsScreen from "./src/screens/ItemDetails";
 
 const Stack = createStackNavigator();
 
+//
+import { db } from "./src/db/firestore/db";
+import { collection, getDocs } from "firebase/firestore";
+
+async function read() {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  console.log("results", querySnapshot);
+}
+read();
+//
 export default function App() {
   return (
     <NavigationContainer>
