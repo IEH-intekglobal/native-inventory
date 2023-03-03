@@ -12,7 +12,7 @@ function parseResults(querySnapshot) {
   querySnapshot.forEach((doc) => {
     //console.log(`${doc.id} => ${Object.keys(doc.data())}`);
 
-    const timeStamp = doc.data().date * 1000;
+    const timeStamp = doc.data().date.seconds * 1000;
     const newItem = { id: doc.id, ...doc.data(), date: new Date(timeStamp) };
     foundItems.push(newItem);
   });
