@@ -1,7 +1,6 @@
 import "react-native-gesture-handler";
 //import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
-import { StyleSheet } from "react-native";
 
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -24,5 +23,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({});

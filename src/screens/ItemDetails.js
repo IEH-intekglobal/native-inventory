@@ -172,7 +172,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderColor: Colors.softGray,
     borderWidth: 1,
-    elevation: 8,
   },
   optionsContainer: {
     flexDirection: "row",

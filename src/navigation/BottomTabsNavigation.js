@@ -33,7 +33,6 @@ export function BottomTabsNavigation({ navigation }) {
       <Tab.Screen
         name="Items"
         component={ItemsScreen}
-        initialParams={{ navigation }}
         options={{
           //headerShown: false,
           //tabBarLabel: "Items",
