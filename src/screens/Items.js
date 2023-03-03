@@ -1,11 +1,17 @@
+import { useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 
-import { items } from "../db/dummy-items";
+//import { items } from "../db/dummy-items";
+import { getItems } from "../db/firestore/db";
 
 import { Item } from "../components/Item";
 import { ItemsHeader } from "../components/ItemsHeader";
 
 export default function Items() {
+  const [items, setItems] = useState();
+
+  getItems().then((results) => setItems(results));
+
   return (
     <View style={styles.itemsContainer}>
       <ItemsHeader style={styles.header} />

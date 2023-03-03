@@ -1,5 +1,5 @@
+import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { items } from "../db/dummy-items";
 
 function ItemInfo({ name, info }) {
   return (
@@ -11,6 +11,7 @@ function ItemInfo({ name, info }) {
 }
 
 export function ItemsHeader({ style }) {
+  const [items, setItems] = useState([]);
   const numberItems = items.length;
   const totalUnities = items.reduce((accumulate, currentItem) => {
     return currentItem.quantity + accumulate;

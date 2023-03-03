@@ -9,9 +9,9 @@ import {
   View,
 } from "react-native";
 import { Colors } from "../constants/colors";
-import { getItemById } from "../db/dummy-items";
+//import { getItemById } from "../db/dummy-items";
+import { getItemById } from "../db/firestore/db";
 import { Ionicons } from "@expo/vector-icons";
-import { func } from "prop-types";
 
 function OptionButton({ icon, text, onPress }) {
   return (
@@ -41,9 +41,11 @@ export default function ItemDetails({ navigation, route }) {
   const [detailedItem, setDetailedItem] = useState(null);
 
   useEffect(() => {
-    const newItem = getItemById(id);
-    navigation.setOptions({ title: newItem.name });
-    setDetailedItem(newItem);
+    //const newItem = getItemById(id);
+    getItemById(id).then((newItem) => {
+      navigation.setOptions({ title: newItem.name });
+      setDetailedItem(newItem);
+    });
   }, [id]);
 
   if (!detailedItem) {

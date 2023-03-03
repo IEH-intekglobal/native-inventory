@@ -3,11 +3,10 @@ import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 import { Colors } from "../constants/colors";
 import IconButton from "../components/IconButton";
 import { Item } from "../components/Item";
-import { items } from "../db/dummy-items";
 
 export default function Search() {
   const [text, setText] = useState("");
-  const [foundItems, setFoundItems] = useState(items);
+  const [foundItems, setFoundItems] = useState([]);
 
   function handleSearchOptions() {
     console.log("search options");
