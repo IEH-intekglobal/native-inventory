@@ -1,11 +1,35 @@
-import { Pressable, StyleSheet, TextInput } from "react-native";
+import { useState } from "react";
+import { Alert, Pressable, StyleSheet, TextInput } from "react-native";
 import { Text, View } from "react-native";
 import { Colors } from "../constants/colors";
+import { registerUser } from "../auth/firestore";
 
-export default function SignUp({ navigation }) {
+export default function SignUp({ navigation, route }) {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [confPassword, setConfPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const setUserToken = route.params.setUserToken;
+
   function goToLogIn() {
     navigation.navigate("LogIn");
   }
+
+  function handleRegister() {
+    if (confPassword !== password) {
+      Alert.alert(
+        "Invalid data",
+        "The password and the confirmation password must be the same"
+      );
+      return;
+    }
+
+    registerUser(email, password).then((user) => {
+      const token = user.stsTokenManager.accessToken;
+      setUserToken(token);
+    });
+  }
+
   return (
     <View style={styles.screenContainer}>
       <View style={styles.titleContainer}>
@@ -16,6 +40,8 @@ export default function SignUp({ navigation }) {
         placeholder={"username"}
         autoCorrect={false}
         //autoFocus={true}
+        value={username}
+        onChangeText={setUsername}
       />
       <TextInput
         style={styles.textInput}
@@ -26,32 +52,37 @@ export default function SignUp({ navigation }) {
         //autoFocus={true}
         inputMode="email"
         keyboardType="email-address"
+        value={email}
+        onChangeText={setEmail}
       />
-      <TextInput
-        style={styles.textInput}
-        placeholder={"confirm email"}
-        autoCapitalize="none"
-        autoComplete="email"
-        autoCorrect={false}
-        //autoFocus={true}
-        inputMode="email"
-        keyboardType="email-address"
-      />
+
       <TextInput
         style={styles.textInput}
         placeholder={"password"}
         secureTextEntry={true}
+        value={password}
+        onChangeText={setPassword}
+      />
+      <TextInput
+        style={styles.textInput}
+        placeholder={"confirm password"}
+        autoCapitalize="none"
+        autoCorrect={false}
+        secureTextEntry={true}
+        value={confPassword}
+        onChangeText={setConfPassword}
       />
       <View style={styles.signUpButtonContainer}>
         <Pressable
           style={styles.signUpButton}
           android_ripple={{ color: "pink" }}
+          onPress={handleRegister}
         >
           <Text style={styles.signUpButtonText}>Sign up</Text>
         </Pressable>
       </View>
       <Pressable style={styles.logInButton} onPress={goToLogIn}>
-        <Text style={styles.logInButtonText}>Register</Text>
+        <Text style={styles.logInButtonText}>Log In</Text>
       </Pressable>
     </View>
   );

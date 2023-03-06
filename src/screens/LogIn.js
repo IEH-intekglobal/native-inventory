@@ -1,9 +1,22 @@
+import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { Colors } from "../constants/colors";
+import { logIn } from "../auth/firestore";
 
-export default function LogIn({ navigation }) {
+export default function LogIn({ navigation, route }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const setUserToken = route.params.setUserToken;
+
   function goToSignupScreen() {
     navigation.navigate("SignUp");
+  }
+
+  function handleLogIn() {
+    logIn(email, password).then((user) => {
+      const token = user.stsTokenManager.accessToken;
+      setUserToken(token);
+    });
   }
   return (
     <View style={styles.screenContainer}>
@@ -19,16 +32,21 @@ export default function LogIn({ navigation }) {
         //autoFocus={true}
         inputMode="email"
         keyboardType="email-address"
+        value={email}
+        onChangeText={setEmail}
       />
       <TextInput
         style={styles.textInput}
         placeholder={"password"}
         secureTextEntry={true}
+        value={password}
+        onChangeText={setPassword}
       />
       <View style={styles.logInButtonContainer}>
         <Pressable
           style={styles.logInButton}
           android_ripple={{ color: "pink" }}
+          onPress={handleLogIn}
         >
           <Text style={styles.logInButtonText}>Log In</Text>
         </Pressable>

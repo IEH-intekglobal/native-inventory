@@ -12,15 +12,16 @@ import { useState } from "react";
 
 const Stack = createStackNavigator();
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [userToken, setUserToken] = useState(null);
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {user ? (
+        {userToken ? (
           <>
             <Stack.Screen
               name="Main"
+              initialParams={{ setUserToken }}
               component={BottomTabsNavigation}
               options={{ headerShown: false }}
             />
@@ -31,12 +32,18 @@ export default function App() {
             <Stack.Screen
               name="LogIn"
               component={LogInScreen}
-              options={{ headerShown: false }}
+              initialParams={{ setUserToken }}
+              options={{
+                headerShown: false,
+              }}
             />
             <Stack.Screen
               name="SignUp"
               component={SignUpScreen}
-              options={{ headerShown: false }}
+              initialParams={{ setUserToken }}
+              options={{
+                headerShown: false,
+              }}
             />
           </>
         )}

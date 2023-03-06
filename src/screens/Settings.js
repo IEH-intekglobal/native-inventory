@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Avatar } from "@rneui/themed";
 import { Colors } from "../constants/colors";
+import { logOut } from "../auth/firestore";
 
 function MenuOption({ icon, children, onPress }) {
   return (
@@ -18,9 +19,16 @@ function MenuOption({ icon, children, onPress }) {
   );
 }
 
-export default function Settings() {
+export default function Settings({ route }) {
+  const setUserToken = route.params.setUserToken;
+  //console.log(route);
   function defaultPresser() {
     console.log("pressing");
+  }
+
+  function handleLogOut() {
+    setUserToken(null);
+    logOut();
   }
   return (
     <View style={styles.screenContainer}>
@@ -28,12 +36,12 @@ export default function Settings() {
         <Avatar
           size={50}
           rounded
-          title="J"
+          title="U"
           containerStyle={{ backgroundColor: Colors.softGray }}
         />
 
-        <Text style={styles.userName}>Javier</Text>
-        <Text style={styles.userMail}>javier@leica.com</Text>
+        <Text style={styles.userName}>Username</Text>
+        <Text style={styles.userMail}>user@leica.com</Text>
       </View>
       <View>
         <MenuOption icon="person-outline" onPress={defaultPresser}>
@@ -54,7 +62,7 @@ export default function Settings() {
         <MenuOption icon="help-circle-outline" onPress={defaultPresser}>
           Help
         </MenuOption>
-        <MenuOption icon="log-out-outline" onPress={defaultPresser}>
+        <MenuOption icon="log-out-outline" onPress={handleLogOut}>
           Sign Out
         </MenuOption>
       </View>
