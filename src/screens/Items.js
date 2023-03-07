@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 
 //import { items } from "../db/dummy-items";
@@ -10,7 +10,9 @@ import { ItemsHeader } from "../components/ItemsHeader";
 export default function Items() {
   const [items, setItems] = useState();
 
-  getItems().then((results) => setItems(results));
+  useEffect(() => {
+    getItems().then((results) => setItems(results));
+  }, []);
 
   return (
     <View style={styles.itemsContainer}>
