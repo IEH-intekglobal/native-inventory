@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { Colors } from "../constants/colors";
 import { logIn } from "../auth/firestore";
 
-export default function LogIn({ navigation, route }) {
+import { SetterContext } from "../state/context";
+
+export default function LogIn({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const setUserToken = route.params.setUserToken;
+
+  const { setUserToken } = useContext(SetterContext);
 
   function goToSignupScreen() {
     navigation.navigate("SignUp");

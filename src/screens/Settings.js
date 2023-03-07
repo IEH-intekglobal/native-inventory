@@ -3,6 +3,9 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { Avatar } from "@rneui/themed";
 import { Colors } from "../constants/colors";
 import { logOut } from "../auth/firestore";
+import { useContext } from "react";
+
+import { SetterContext } from "../state/context";
 
 function MenuOption({ icon, children, onPress }) {
   return (
@@ -19,9 +22,9 @@ function MenuOption({ icon, children, onPress }) {
   );
 }
 
-export default function Settings({ route }) {
-  const setUserToken = route.params.setUserToken;
-  //console.log(route);
+export default function Settings() {
+  const { setUserToken } = useContext(SetterContext);
+
   function defaultPresser() {
     console.log("pressing");
   }

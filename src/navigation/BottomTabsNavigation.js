@@ -13,9 +13,7 @@ import { StyleSheet } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
-export function BottomTabsNavigation({ route }) {
-  const setUserToken = route.params.setUserToken;
-
+export function BottomTabsNavigation() {
   return (
     <Tab.Navigator
       initialRouteName="Items"
@@ -46,7 +44,6 @@ export function BottomTabsNavigation({ route }) {
       <Tab.Screen
         name="Menu"
         component={SettingsScreen}
-        initialParams={{ setUserToken }}
         options={{
           tabBarLabel: "",
           tabBarIcon: ({ focused, color, size }) => {
