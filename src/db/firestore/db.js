@@ -1,7 +1,11 @@
 import { app } from "./config";
-import { getDoc, getFirestore } from "firebase/firestore";
-import { collection, getDocs } from "firebase/firestore";
-import { async } from "@firebase/util";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+} from "firebase/firestore";
 
 export const db = getFirestore(app);
 
@@ -49,4 +53,10 @@ export async function getNotifications() {
   const foundItems = parseResults(querySnapshot);
 
   return foundItems;
+}
+
+export async function saveScanned(data) {
+  await addDoc(collection(db, "scanned"), {
+    data,
+  });
 }

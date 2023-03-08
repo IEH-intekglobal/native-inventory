@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
+import { saveScanned } from "../db/firestore/db";
 
 export function Scanning() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -16,7 +17,8 @@ export function Scanning() {
   }, []);
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    //alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    saveScanned(data);
     //Saving new data to db
   };
 
