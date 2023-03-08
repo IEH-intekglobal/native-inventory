@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { getItems } from "../db/firestore/db";
 
 function ItemInfo({ name, info }) {
   return (
@@ -16,6 +17,10 @@ export function ItemsHeader({ style }) {
   const totalUnities = items.reduce((accumulate, currentItem) => {
     return currentItem.quantity + accumulate;
   }, 0);
+
+  useEffect(() => {
+    getItems().then((results) => setItems(results));
+  }, []);
 
   const totalValue = items.reduce((accumulate, currentItem) => {
     const currentValue = currentItem.quantity * currentItem.price;
