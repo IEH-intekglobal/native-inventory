@@ -29,7 +29,7 @@ export function ItemsHeader({ style }) {
   const totalValueStr = `$${String(totalValue / 1000)}K`;
 
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, style]} testid="items-header">
       <ItemInfo name="Folders" info="1" />
       <ItemInfo name="Items" info={numberItems} />
       <ItemInfo name="Total units" info={totalUnities} />
