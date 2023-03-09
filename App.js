@@ -8,7 +8,7 @@ import LogInScreen from "./src/screens/LogIn";
 import SignUpScreen from "./src/screens/SignUp";
 import { BottomTabsNavigation } from "./src/navigation/BottomTabsNavigation";
 import ItemDetailsScreen from "./src/screens/ItemDetails";
-import { createContext, useState } from "react";
+import { useState } from "react";
 
 import { SetterContext } from "./src/state/context";
 
