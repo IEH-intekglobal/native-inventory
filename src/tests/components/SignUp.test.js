@@ -3,13 +3,13 @@ import { fireEvent, render, screen } from "@testing-library/react-native";
 
 import SignUp from "../../screens/SignUp";
 import { SetterContext } from "../../state/context";
-//import { registerUser } from "../../auth/firestore";
 
 jest.mock("../../auth/firestore", () => ({
-  registerUser: () =>
-    new Promise((res, rej) =>
+  registerUser: () => {
+    return new Promise((res, rej) =>
       res({ stsTokenManager: { accessToken: "token" } })
-    ),
+    );
+  },
 }));
 
 describe("Tests for the Sign Up screen", () => {
@@ -38,10 +38,11 @@ describe("Tests for the Sign Up screen", () => {
       "The password and the confirmation password must be the same"
     );
   });
-  test("Confirmation password equals password", () => {
-    const setUserToken = jest.fn();
+  test("Confirmation password equals password", async () => {
+    const setUserToken = jest.fn(() => {});
+
     render(
-      <SetterContext.Provider value={{ setUserToken }}>
+      <SetterContext.Provider value={{ setUserToken: setUserToken }}>
         <SignUp />
       </SetterContext.Provider>
     );
@@ -55,6 +56,9 @@ describe("Tests for the Sign Up screen", () => {
     fireEvent.changeText(confirmationPasswordContainer, "password");
 
     const signUpButton = screen.queryByText("Sign up");
+
     fireEvent.press(signUpButton);
+    await new Promise(process.nextTick);
+    expect(setUserToken).toBeCalled();
   });
 });
