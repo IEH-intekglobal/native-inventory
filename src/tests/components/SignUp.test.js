@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import { fireEvent, render, screen } from "@testing-library/react-native";
 
 import SignUp from "../../screens/SignUp";
@@ -13,6 +14,7 @@ jest.mock("../../auth/firestore", () => ({
 
 describe("Tests for the Sign Up screen", () => {
   test("Confirmation password does not equal password", async () => {
+    jest.spyOn(Alert, "alert");
     const setUserToken = jest.fn();
     render(
       <SetterContext.Provider value={{ setUserToken }}>
@@ -31,8 +33,10 @@ describe("Tests for the Sign Up screen", () => {
     const signUpButton = screen.queryByText("Sign up");
     fireEvent.press(signUpButton);
 
-    // const okButton = await screen.findByText("Invalid data");
-    // fireEvent.press(okButton);
+    expect(Alert.alert).toHaveBeenCalledWith(
+      "Invalid data",
+      "The password and the confirmation password must be the same"
+    );
   });
   test("Confirmation password equals password", () => {
     const setUserToken = jest.fn();
