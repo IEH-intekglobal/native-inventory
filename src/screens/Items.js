@@ -40,17 +40,23 @@ export default function Items() {
     const { foundItems, newFirstVisible, newLastVisible } = await getNextItems(
       lastVisible
     );
-    setItems(foundItems);
-    setFirstVisible(newFirstVisible);
+    if (newLastVisible) {
+      setItems(foundItems);
+      setFirstVisible(newFirstVisible);
+    }
+
     setLastVisible(newLastVisible);
   }
 
   async function handlePressPrevious() {
     const { foundItems, newFirstVisible, newLastVisible } =
       await getPreviousItems(firstVisible);
-    setItems(foundItems);
+    if (newFirstVisible) {
+      setItems(foundItems);
+      setLastVisible(newLastVisible);
+    }
+
     setFirstVisible(newFirstVisible);
-    setLastVisible(newLastVisible);
   }
 
   return (
@@ -91,7 +97,7 @@ export default function Items() {
           color="white"
           style={styles.addButton}
           onPress={handlePressPrevious}
-          disabled={false}
+          disabled={!firstVisible}
         />
         <IconButton
           icon="chevron-forward"
@@ -99,6 +105,7 @@ export default function Items() {
           color="white"
           style={styles.addButton}
           onPress={handlePressNext}
+          disabled={!lastVisible}
         />
       </View>
       <FlatList

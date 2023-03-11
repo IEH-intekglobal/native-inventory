@@ -6,6 +6,7 @@ import {
   getDocs,
   getFirestore,
   limit,
+  limitToLast,
   orderBy,
   query,
   startAfter,
@@ -59,6 +60,7 @@ export async function getNextItems(lastVisible) {
   const newFirstVisible = querySnapshot.docs[0];
 
   const foundItems = parseResults(querySnapshot);
+  console.log(foundItems, newFirstVisible, newLastVisible);
 
   return { foundItems, newFirstVisible, newLastVisible };
 }
@@ -67,7 +69,7 @@ export async function getPreviousItems(firstVisible) {
   const q = query(
     collection(db, "items"),
     orderBy("date"),
-    limit(quantityOfItems),
+    limitToLast(quantityOfItems),
     endBefore(firstVisible)
   );
   const querySnapshot = await getDocs(q);
