@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 //import { items } from "../db/dummy-items";
-import { getItems } from "../db/firestore/db";
+import { getNextItems, getPreviousItems } from "../db/firestore/db";
 
 import { Item } from "../components/Item";
 import { ItemsHeader } from "../components/ItemsHeader";
@@ -20,14 +20,37 @@ import { Colors } from "../constants/colors";
 
 export default function Items() {
   const [items, setItems] = useState();
+  const [firstVisible, setFirstVisible] = useState(null);
+  const [lastVisible, setLastVisible] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
-    getItems().then((results) => setItems(results));
+    getNextItems().then(({ foundItems, newFirstVisible, newLastVisible }) => {
+      setItems(foundItems);
+      setFirstVisible(newFirstVisible);
+      setLastVisible(newLastVisible);
+    });
   }, []);
 
   function handelScan() {
     setModalVisible(true);
+  }
+
+  async function handlePressNext() {
+    const { foundItems, newFirstVisible, newLastVisible } = await getNextItems(
+      lastVisible
+    );
+    setItems(foundItems);
+    setFirstVisible(newFirstVisible);
+    setLastVisible(newLastVisible);
+  }
+
+  async function handlePressPrevious() {
+    const { foundItems, newFirstVisible, newLastVisible } =
+      await getPreviousItems(firstVisible);
+    setItems(foundItems);
+    setFirstVisible(newFirstVisible);
+    setLastVisible(newLastVisible);
   }
 
   return (
@@ -61,7 +84,23 @@ export default function Items() {
           </View>
         </View>
       </Modal>
-
+      <View style={styles.navigationButtonsContainer}>
+        <IconButton
+          icon="chevron-back"
+          size={28}
+          color="white"
+          style={styles.addButton}
+          onPress={handlePressPrevious}
+          disabled={false}
+        />
+        <IconButton
+          icon="chevron-forward"
+          size={28}
+          color="white"
+          style={styles.addButton}
+          onPress={handlePressNext}
+        />
+      </View>
       <FlatList
         data={items}
         keyExtractor={(item) => item.id}
@@ -73,7 +112,7 @@ export default function Items() {
 
 const styles = StyleSheet.create({
   itemsContainer: {
-    paddingBottom: 70,
+    paddingBottom: 170,
   },
   header: {
     borderBottomColor: "lavender",
@@ -97,5 +136,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
+  },
+  navigationButtonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
 });

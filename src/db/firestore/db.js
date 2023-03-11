@@ -2,9 +2,13 @@ import { app } from "./config";
 import {
   addDoc,
   collection,
-  doc,
+  endBefore,
   getDocs,
   getFirestore,
+  limit,
+  orderBy,
+  query,
+  startAfter,
 } from "firebase/firestore";
 
 export const db = getFirestore(app);
@@ -24,12 +28,56 @@ function parseResults(querySnapshot) {
   return foundItems;
 }
 
-export async function getItems(pagination) {
-  const querySnapshot = await getDocs(collection(db, "items"));
+export async function getItems() {
+  const querySnapshot = await getDocs(collection(db, "items"), orderBy("date"));
 
   const foundItems = parseResults(querySnapshot);
 
   return foundItems;
+}
+const quantityOfItems = 2;
+export async function getNextItems(lastVisible) {
+  let querySnapshot;
+  if (!lastVisible) {
+    const q = query(
+      collection(db, "items"),
+      orderBy("date"),
+      limit(quantityOfItems)
+    );
+    querySnapshot = await getDocs(q);
+  } else {
+    const q = query(
+      collection(db, "items"),
+      orderBy("date"),
+      limit(quantityOfItems),
+      startAfter(lastVisible)
+    );
+    querySnapshot = await getDocs(q);
+  }
+
+  const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+  const newFirstVisible = querySnapshot.docs[0];
+
+  const foundItems = parseResults(querySnapshot);
+
+  return { foundItems, newFirstVisible, newLastVisible };
+}
+
+export async function getPreviousItems(firstVisible) {
+  const q = query(
+    collection(db, "items"),
+    orderBy("date"),
+    limit(quantityOfItems),
+    endBefore(firstVisible)
+  );
+  const querySnapshot = await getDocs(q);
+
+  const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+  const newFirstVisible = querySnapshot.docs[0];
+
+  const foundItems = parseResults(querySnapshot);
+
+  return { foundItems, newFirstVisible, newLastVisible };
 }
 
 export async function getItemById(id) {
