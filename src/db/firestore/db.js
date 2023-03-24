@@ -60,7 +60,6 @@ export async function getNextItems(lastVisible) {
   const newFirstVisible = querySnapshot.docs[0];
 
   const foundItems = parseResults(querySnapshot);
-  console.log(foundItems, newFirstVisible, newLastVisible);
 
   return { foundItems, newFirstVisible, newLastVisible };
 }

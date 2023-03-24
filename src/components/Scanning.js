@@ -18,6 +18,7 @@ export function Scanning() {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     //alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    console.log(data);
     saveScanned(data);
     //Saving new data to db
   };
