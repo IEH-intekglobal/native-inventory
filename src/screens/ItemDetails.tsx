@@ -9,11 +9,32 @@ import {
   View,
 } from "react-native";
 import { Colors } from "../constants/colors";
-//import { getItemById } from "../db/dummy-items";
-import { getItemById } from "../db/firestore/db";
+import { getItemById } from "../network/db";
 import { Ionicons } from "@expo/vector-icons";
+import type { ComponentProps } from "react";
+import type { GestureResponderEvent } from "react-native";
+import { RootStackParamsList } from "../navigation";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-function OptionButton({ icon, text, onPress }) {
+interface OptionButtonProps {
+  text: string;
+  icon: ComponentProps<typeof Ionicons>['name'];
+  onPress?: null | ((event: GestureResponderEvent) => void) | undefined;
+}
+
+//TODO could be an iconButton
+/*
+const OptionButton:FC<OptionButtonProps> = ({icon, text, onPress}) =>
+  <IconButton 
+    icon={icon} 
+    text={text} 
+    onPress={onPress} 
+    size={20} 
+    style={styles.optionButton}
+  />
+*/
+
+function OptionButton({ icon, text, onPress }: OptionButtonProps) {
   return (
     <Pressable onPress={onPress} style={styles.optionButton}>
       <Ionicons name={icon} size={20} />
@@ -22,7 +43,13 @@ function OptionButton({ icon, text, onPress }) {
   );
 }
 
-function NumberOptions({ icon, title, text }) {
+interface NumberOptionsProps {
+  text: string;
+  title: string;
+  icon?: ComponentProps<typeof Ionicons>['name'];
+}
+
+function NumberOptions({ icon, title, text }: NumberOptionsProps) {
   return (
     <View style={styles.numberOptionContainer}>
       <View>
@@ -36,9 +63,11 @@ function NumberOptions({ icon, title, text }) {
   );
 }
 
-export default function ItemDetails({ navigation, route }) {
+type ItemDetailsScreenRouteProps = NativeStackScreenProps<RootStackParamsList, "ItemDetails">;
+
+export default function ItemDetails({ navigation, route }: ItemDetailsScreenRouteProps) {
   const { id } = route.params;
-  const [detailedItem, setDetailedItem] = useState(null);
+  const [detailedItem, setDetailedItem] = useState<Item>();
 
   useEffect(() => {
     //const newItem = getItemById(id);
@@ -57,6 +86,7 @@ export default function ItemDetails({ navigation, route }) {
     );
   }
 
+  //TODO implement handlers
   function defaultOnPress() {}
 
   return (
@@ -96,7 +126,7 @@ export default function ItemDetails({ navigation, route }) {
         <NumberOptions
           icon="add-circle-outline"
           title="Quantity"
-          text={detailedItem.quantity}
+          text={`${detailedItem.quantity}`}
         />
         <NumberOptions
           icon="notifications-outline"

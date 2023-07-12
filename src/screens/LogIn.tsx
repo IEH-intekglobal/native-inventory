@@ -1,11 +1,16 @@
 import { useContext, useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { Colors } from "../constants/colors";
-import { logIn } from "../auth/firestore";
+import { logIn } from "../network/auth";
 
 import { SetterContext } from "../state/context";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import type { RootStackParamsList } from "../navigation";
 
-export default function LogIn({ navigation }) {
+
+type LogInScreenProps = NativeStackScreenProps<RootStackParamsList, "LogIn">
+
+export default function LogIn({ navigation }: LogInScreenProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,7 +22,7 @@ export default function LogIn({ navigation }) {
 
   function handleLogIn() {
     logIn(email, password).then((user) => {
-      const token = user.stsTokenManager.accessToken;
+      const token = (user as any)?.stsTokenManager?.accessToken;
       setUserToken(token);
     });
   }

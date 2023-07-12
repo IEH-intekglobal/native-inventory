@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Alert, Pressable, StyleSheet, TextInput } from "react-native";
 import { Text, View } from "react-native";
 import { Colors } from "../constants/colors";
-import { registerUser } from "../auth/firestore";
+import { registerUser } from "../network/auth";
 
 import { SetterContext } from "../state/context";
 

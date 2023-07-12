@@ -17,6 +17,10 @@ interface Item extends Entity{
 }
 
 interface Notification extends Entity{
+    id: string;
+    title: string;
+    image: string;
+    status: "unread" | "read"
 
 }
 

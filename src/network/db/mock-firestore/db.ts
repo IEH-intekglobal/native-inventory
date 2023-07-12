@@ -1,6 +1,6 @@
 import { app } from './config';
 import { items, notifications } from './mock-data';
-import type { Firestore, DocumentSnapshot,DocumentData, DocumentReference, FieldPath, QueryDocumentSnapshot, SnapshotOptions, SnapshotMetadata } from "firebase/firestore";
+import type { Firestore, DocumentSnapshot, DocumentReference, FieldPath, QueryDocumentSnapshot, SnapshotOptions, SnapshotMetadata } from "firebase/firestore";
 
 function mockQueryDocumentShapshot<T>(data: T): QueryDocumentSnapshot<T> {
     return {
@@ -14,7 +14,7 @@ function mockQueryDocumentShapshot<T>(data: T): QueryDocumentSnapshot<T> {
         get(fieldPath: string | FieldPath, options?: SnapshotOptions): any {
             //TODO get document fields
         },
-        get id(){ return 'id' }, //TODO get unique ID
+        get id() { return 'id' }, //TODO get unique ID
         get ref(): DocumentReference<T> {
             //TODO add missing properties
             return {} as DocumentReference<T>;
@@ -67,6 +67,6 @@ export async function getNotifications() {
     return notifications;
 }
 
-export async function saveScanned(data: DocumentData) {
+export async function saveScanned(data: string) {
 
 }

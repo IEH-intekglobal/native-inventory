@@ -1,6 +1,7 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import type { AppNavigationProps } from "../navigation";
 
 interface TextWithHighlightProps {
   text?: string;
@@ -28,8 +29,12 @@ interface ItemProps {
   highlightedText?: string;
 }
 
+
+
+
 export function Item({ item, width, highlightedText }: ItemProps ) {
-  const navigation = useNavigation();
+
+  const navigation = useNavigation<AppNavigationProps>();
 
   const totalPrice = `$${item.price * item.quantity}.00`;
 

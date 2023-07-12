@@ -1,14 +1,13 @@
 import { Pressable, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import type { GestureResponderEvent } from "react-native";
+import type { PressableProps } from "react-native";
 import type { FC, PropsWithChildren, ComponentProps } from "react";
 
-interface IconButtonProps {
+interface IconButtonProps extends PressableProps {
   icon: ComponentProps<typeof Ionicons>["name"];
   size: number;
-  color: string;
+  color?: string;
   style?: {}
-  onPress?: null | ((event: GestureResponderEvent) => void) | undefined;
 }
 
 const IconButton: FC<PropsWithChildren<IconButtonProps>> = ({

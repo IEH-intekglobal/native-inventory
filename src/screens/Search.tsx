@@ -4,12 +4,12 @@ import { Colors } from "../constants/colors";
 import IconButton from "../components/IconButton";
 import { Item } from "../components/Item";
 
-import { getItems } from "../db/firestore/db";
+import { getItems } from "../network/db";
 
 export default function Search() {
   const [text, setText] = useState("");
-  const [foundItems, setFoundItems] = useState([]);
-  const [allItems, setAllItems] = useState([]);
+  const [foundItems, setFoundItems] = useState<Item[]>([]);
+  const [allItems, setAllItems] = useState<Item[]>([]);
 
   useEffect(() => {
     getItems().then((items) => {
@@ -22,7 +22,7 @@ export default function Search() {
     console.log("search options");
   }
 
-  function onChangeText(text) {
+  function onChangeText(text: string) {
     setText(text);
 
     const newItems = allItems.filter((item) => {

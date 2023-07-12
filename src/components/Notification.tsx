@@ -2,7 +2,11 @@ import { StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Image } from "react-native";
 
-export function Notification({ notification }) {
+interface NotificationProps {
+  notification: Notification
+}
+
+export function Notification({ notification }: NotificationProps) {
   const { date, status, title } = notification;
   const unread = status === "unread";
 

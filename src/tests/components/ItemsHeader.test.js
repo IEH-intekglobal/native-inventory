@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react-native";
 import { ItemsHeader } from "../../components/ItemsHeader";
-//import { getItems } from "../../db/firestore/db";
 
 jest.mock("../../db/firestore/db", () => ({
   getItems: () =>

@@ -3,10 +3,10 @@ import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Colors } from "../constants/colors";
 import { Notification } from "../components/Notification";
-import { getNotifications } from "../db/firestore/db";
+import { getNotifications } from "../network/db";
 
 export default function Notifications() {
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
 
   useEffect(() => {
     getNotifications().then((nots) => setNotifications(nots));

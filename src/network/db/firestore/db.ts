@@ -13,7 +13,7 @@ import {
   startAfter,
   where,
 } from "firebase/firestore";
-import type { CollectionReference, DocumentData, DocumentSnapshot } from "firebase/firestore";
+import type { CollectionReference, DocumentData, DocumentSnapshot} from "firebase/firestore";
 
 
 export const db = getFirestore(app);
@@ -108,7 +108,7 @@ export async function getNotifications() {
   return foundItems;
 }
 
-export async function saveScanned(data: DocumentData) {
+export async function saveScanned(data: string) {
   await addDoc(collection(db, "scanned"), {
     data,
   });

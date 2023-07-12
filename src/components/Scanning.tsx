@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
-import { BarCodeScanner } from "expo-barcode-scanner";
-import { saveScanned } from "../db/firestore/db";
+import { BarCodeScannedCallback, BarCodeScanner } from "expo-barcode-scanner";
+import { saveScanned } from "../network/db";
 
 export function Scanning() {
-  const [hasPermission, setHasPermission] = useState(null);
+  const [hasPermission, setHasPermission] = useState<boolean>(false);
   const [scanned, setScanned] = useState(false);
 
   useEffect(() => {
@@ -15,10 +15,10 @@ export function Scanning() {
 
     getBarCodeScannerPermissions();
   }, []);
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned: BarCodeScannedCallback = ({ type, data }) => {
     setScanned(true);
     //alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    console.log(data);
+    console.log(type, data);
     saveScanned(data);
     //Saving new data to db
   };

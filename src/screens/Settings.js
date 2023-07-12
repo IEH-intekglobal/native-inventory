@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Avatar } from "@rneui/themed";
 import { Colors } from "../constants/colors";
-import { logOut } from "../auth/firestore";
+import { logOut } from "../network/auth";
 import { useContext } from "react";
 
 import { SetterContext } from "../state/context";

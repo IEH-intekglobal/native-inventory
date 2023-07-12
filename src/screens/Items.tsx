@@ -8,7 +8,7 @@ import {
   View,
 } from "react-native";
 
-import { getNextItems, getPreviousItems } from "../db";
+import { getNextItems, getPreviousItems } from "../network/db";
 
 import { Item } from "../components/Item";
 import { ItemsHeader } from "../components/ItemsHeader";
@@ -16,7 +16,7 @@ import IconButton from "../components/IconButton";
 import { Scanning } from "../components/Scanning";
 
 import { Colors } from "../constants/colors";
-import { QueryDocumentSnapshot } from "firebase/firestore";
+import type { QueryDocumentSnapshot } from "firebase/firestore";
 
 export default function Items() {
   const [items, setItems] = useState([] as Item[]);

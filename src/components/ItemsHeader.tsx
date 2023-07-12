@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { getItems } from "../db/firestore/db";
+import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
+import { getItems } from "../network/db";
 
-function ItemInfo({ name, info }) {
+interface ItemInfo {
+  name: string;
+  info: string;
+}
+function ItemInfo({ name, info }: ItemInfo) {
   return (
     <View>
       <Text style={styles.name}>{name}</Text>
@@ -11,8 +15,12 @@ function ItemInfo({ name, info }) {
   );
 }
 
-export function ItemsHeader({ style }) {
-  const [items, setItems] = useState([]);
+interface ItemsHeader {
+  style?: StyleProp<ViewStyle>;
+}
+
+export function ItemsHeader({ style }: ItemsHeader) {
+  const [items, setItems] = useState<Item[]>([]);
   const numberItems = items.length;
   const totalUnities = items.reduce((accumulate, currentItem) => {
     return currentItem.quantity + accumulate;
@@ -31,8 +39,8 @@ export function ItemsHeader({ style }) {
   return (
     <View style={[styles.container, style]}>
       <ItemInfo name="Folders" info="1" />
-      <ItemInfo name="Items" info={numberItems} />
-      <ItemInfo name="Total units" info={totalUnities} />
+      <ItemInfo name="Items" info={`${numberItems}`} />
+      <ItemInfo name="Total units" info={`${totalUnities}`} />
       <ItemInfo name="Total value" info={totalValueStr} />
     </View>
   );

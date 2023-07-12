@@ -1,9 +1,6 @@
 import "react-native-gesture-handler";
-//import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
-
-import { createStackNavigator } from "@react-navigation/stack";
-
+import { Stack } from "./src/navigation";
 import LogInScreen from "./src/screens/LogIn";
 import SignUpScreen from "./src/screens/SignUp";
 import { BottomTabsNavigation } from "./src/navigation/BottomTabsNavigation";
@@ -12,9 +9,8 @@ import { useState } from "react";
 
 import { SetterContext } from "./src/state/context";
 
-const Stack = createStackNavigator();
 export default function App() {
-  const [userToken, setUserToken] = useState('some token');
+  const [userToken, setUserToken] = useState(null);
 
   return (
     <SetterContext.Provider value={{ setUserToken }}>
