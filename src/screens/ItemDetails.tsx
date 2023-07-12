@@ -13,7 +13,7 @@ import { getItemById } from "../network/db";
 import { Ionicons } from "@expo/vector-icons";
 import type { ComponentProps } from "react";
 import type { GestureResponderEvent } from "react-native";
-import { RootStackParamsList } from "../navigation";
+import type { RootStackParamsList } from "../navigation";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 interface OptionButtonProps {

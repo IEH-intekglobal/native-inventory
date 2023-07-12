@@ -5,8 +5,12 @@ import { Colors } from "../constants/colors";
 import { registerUser } from "../network/auth";
 
 import { SetterContext } from "../state/context";
+import type { RootStackParamsList } from "../navigation";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-export default function SignUp({ navigation }) {
+type SignUpScreenRouteProps = NativeStackScreenProps<RootStackParamsList, "SignUp">;
+
+export default function SignUp({ navigation }: SignUpScreenRouteProps) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [confPassword, setConfPassword] = useState("");

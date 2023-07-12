@@ -1,13 +1,20 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, PressableProps, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Avatar } from "@rneui/themed";
 import { Colors } from "../constants/colors";
 import { logOut } from "../network/auth";
 import { useContext } from "react";
+import type { FC, PropsWithChildren, ComponentProps } from "react";
 
 import { SetterContext } from "../state/context";
 
-function MenuOption({ icon, children, onPress }) {
+interface MenuOptionProps  {
+  icon: ComponentProps<typeof Ionicons>['name'];
+  onPress: PressableProps['onPress'];
+
+}
+
+const MenuOption: FC<PropsWithChildren<MenuOptionProps>> = ({ icon, children, onPress }) => {
   return (
     <Pressable onPress={onPress}>
       <View style={styles.buttonContainer}>
