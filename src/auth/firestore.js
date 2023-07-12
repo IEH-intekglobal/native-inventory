@@ -1,20 +1,21 @@
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
+// import {
+//   getAuth,
+//   createUserWithEmailAndPassword,
+//   signInWithEmailAndPassword,
+//   signOut,
+// } from "firebase/auth";
 
 export async function registerUser(email, password) {
-  const auth = getAuth();
+  // const auth = getAuth();
 
   try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    return userCredential.user;
+    // const userCredential = await createUserWithEmailAndPassword(
+    //   auth,
+    //   email,
+    //   password
+    // );
+    // return userCredential.user;
+    return {}; //TODO type user
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -23,15 +24,16 @@ export async function registerUser(email, password) {
 }
 
 export async function logIn(email, password) {
-  const auth = getAuth();
+  // const auth = getAuth();
 
   try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    return userCredential.user;
+    // const userCredential = await signInWithEmailAndPassword(
+    //   auth,
+    //   email,
+    //   password
+    // );
+    // return userCredential.user;
+    return {}; //TODO user
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -40,11 +42,11 @@ export async function logIn(email, password) {
 }
 
 export async function logOut() {
-  const auth = getAuth();
+  // const auth = getAuth();
 
-  try {
-    await signOut(auth);
-  } catch (error) {
-    console.error(error);
-  }
+  // try {
+    // await signOut(auth);
+  // } catch (error) {
+  //   console.error(error);
+  // }
 }

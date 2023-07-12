@@ -14,7 +14,7 @@ import { SetterContext } from "./src/state/context";
 
 const Stack = createStackNavigator();
 export default function App() {
-  const [userToken, setUserToken] = useState(null);
+  const [userToken, setUserToken] = useState('some token');
 
   return (
     <SetterContext.Provider value={{ setUserToken }}>

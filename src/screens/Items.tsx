@@ -8,8 +8,7 @@ import {
   View,
 } from "react-native";
 
-//import { items } from "../db/dummy-items";
-import { getNextItems, getPreviousItems } from "../db/firestore/db";
+import { getNextItems, getPreviousItems } from "../db";
 
 import { Item } from "../components/Item";
 import { ItemsHeader } from "../components/ItemsHeader";
@@ -17,11 +16,12 @@ import IconButton from "../components/IconButton";
 import { Scanning } from "../components/Scanning";
 
 import { Colors } from "../constants/colors";
+import { QueryDocumentSnapshot } from "firebase/firestore";
 
 export default function Items() {
-  const [items, setItems] = useState();
-  const [firstVisible, setFirstVisible] = useState(null);
-  const [lastVisible, setLastVisible] = useState(null);
+  const [items, setItems] = useState([] as Item[]);
+  const [firstVisible, setFirstVisible] = useState<QueryDocumentSnapshot<Item>  | undefined>();
+  const [lastVisible, setLastVisible] = useState<QueryDocumentSnapshot<Item> | undefined>();
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
@@ -118,6 +118,9 @@ export default function Items() {
 }
 
 const styles = StyleSheet.create({
+  centeredView: { },
+  modalView: {},
+
   itemsContainer: {
     paddingBottom: 170,
   },

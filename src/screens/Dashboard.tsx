@@ -3,10 +3,10 @@ import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import { ItemsHeader } from "../components/ItemsHeader";
 import { DashboardCard } from "../components/DashboardCard";
 import { Item } from "../components/Item";
-import { getRecentItems } from "../db/firestore/db";
+import { getRecentItems } from "../db";
 
 export default function Dashboard() {
-  const [recentItems, setRecentItems] = useState([]);
+  const [recentItems, setRecentItems] = useState([] as Item[]);
 
   useEffect(() => {
     getRecentItems().then((items) => {

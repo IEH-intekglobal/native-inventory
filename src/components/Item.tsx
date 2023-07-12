@@ -2,8 +2,13 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 
-function TextWithHighlight({ text, highlightedText }) {
-  const index = text?.toLowerCase().indexOf(highlightedText.toLowerCase());
+interface TextWithHighlightProps {
+  text?: string;
+  highlightedText: string;
+}
+
+function TextWithHighlight({ text, highlightedText }: TextWithHighlightProps) {
+  const index = text?.toLowerCase().indexOf(highlightedText.toLowerCase()) ?? 0;
   const firstPart = text?.slice(0, index);
   const middlePart = text?.slice(index, index + highlightedText.length);
   const lastPart = text?.slice(index + highlightedText.length);
@@ -17,12 +22,18 @@ function TextWithHighlight({ text, highlightedText }) {
   );
 }
 
-export function Item({ item, width, highlightedText }) {
+interface ItemProps {
+  item: Item,
+  width?: number;
+  highlightedText?: string;
+}
+
+export function Item({ item, width, highlightedText }: ItemProps ) {
   const navigation = useNavigation();
 
   const totalPrice = `$${item.price * item.quantity}.00`;
 
-  const slimItem = width && width < 400;
+  const slimItem = Boolean(width && width < 400);
 
   function handleShowOptions() {
     console.log(item.name);
@@ -31,6 +42,7 @@ export function Item({ item, width, highlightedText }) {
   function handleShowDetails() {
     navigation.navigate("ItemDetails", { id: item.id });
   }
+  
   return (
     <Pressable
       style={[styles.componentContainer, slimItem && styles.slimContainer]}
@@ -59,7 +71,7 @@ export function Item({ item, width, highlightedText }) {
             </Text>
           </View>
           <Pressable
-            android_ripple={true}
+            android_ripple={{}}
             onPress={handleShowOptions}
             style={[styles.optionsButton, slimItem && styles.slimOptionsButton]}
           >
