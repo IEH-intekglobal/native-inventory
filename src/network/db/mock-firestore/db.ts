@@ -56,7 +56,7 @@ export async function getPreviousItems(firstVisible: unknown) {
 }
 
 export async function getItemById(id: unknown) {
-    return {} as Item;
+    return items.find(i=>i.id === id) as Item;
 }
 
 export async function getRecentItems() {

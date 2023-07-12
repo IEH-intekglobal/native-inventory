@@ -1,26 +1,34 @@
+import { createMockItem, createMockNotification } from "./util";
+
+const BASE_URL = 'https://gitlab.com/IEH/itkglob-assets/-/raw/master/app-assets';
+
 export const items: Item[] = [
-    {
-        id: "0", 
-        name: "Apple", 
-        price: 30, 
-        quantity: 30,
-        image: "https://gitlab.com/IEH/itkglob-assets/-/raw/master/app-assets/apple-fruit.jpg",
-        date: {
-            seconds: 30
-        }
-    },
-    {
-        id: "1", 
-        name: "Sandwich", 
-        price: 40, 
-        quantity: 30,
-        image: "https://gitlab.com/IEH/itkglob-assets/-/raw/master/app-assets/sandwich.png",
-        date: {
-            seconds: 30
-        }
-    }
+    createMockItem(
+        "Apple",
+        30, 30,
+        BASE_URL + "/apple-fruit.jpg",
+        new Date(2023, 6, 12)),
+    createMockItem(
+        "Sandwich",
+        30, 30,
+        BASE_URL + "/sandwich.png",
+        new Date(2023, 6, 12)),
 ];
 
-export const notifications: Notification[] = [];
+export const notifications: Notification[] = [
+    createMockNotification(
+        "Get Semiconductors",
+        BASE_URL + "/apple-fruit.jpg",
+        "unread",
+        new Date(2022, 1, 24)
+    ),
+    createMockNotification(
+        "Check Inventory",
+        BASE_URL + "/apple-fruit.jpg",
+        "read",
+        new Date(2022, 1, 24)
+    ),
+    
+];
 
 export const scanned: Scanned[] = [];

@@ -1,6 +1,8 @@
 interface Entity {
     date: {
         seconds: number;
+        toString(): string;
+        toLocaleString(): string;
     }
 }
 
@@ -16,12 +18,13 @@ interface Item extends Entity{
     image: string;
 }
 
+type NotificationStatus = "unread" | "read";
+
 interface Notification extends Entity{
     id: string;
     title: string;
     image: string;
-    status: "unread" | "read"
-
+    status: NotificationStatus
 }
 
 interface Scanned extends Entity {
