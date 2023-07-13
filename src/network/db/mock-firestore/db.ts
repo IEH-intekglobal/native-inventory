@@ -34,7 +34,7 @@ export async function getItems() {
 }
 
 export async function getNextItems(lastVisible?: DocumentSnapshot<unknown>) {
-    const foundItems: Item[] = [];
+    const foundItems: Item[] = items;
     const newFirstVisible: QueryDocumentSnapshot<Item> = mockQueryDocumentShapshot({} as Item);
     const newLastVisible: QueryDocumentSnapshot<Item> = mockQueryDocumentShapshot({} as Item);
     return {

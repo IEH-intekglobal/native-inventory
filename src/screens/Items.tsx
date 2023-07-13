@@ -16,6 +16,7 @@ import IconButton from "../components/IconButton";
 import { Scanning } from "../components/Scanning";
 
 import { Colors } from "../constants/colors";
+
 import type { QueryDocumentSnapshot } from "firebase/firestore";
 
 export default function Items() {
